@@ -1,7 +1,6 @@
 package com.example.outsourcingproject.config;
 
 import com.example.outsourcingproject.common.annotation.Auth;
-import com.example.outsourcingproject.domain.user.dto.response.AuthUser;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.core.MethodParameter;
 import org.springframework.lang.Nullable;

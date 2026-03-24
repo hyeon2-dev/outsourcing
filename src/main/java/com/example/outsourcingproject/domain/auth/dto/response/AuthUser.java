@@ -1,4 +1,4 @@
-package com.example.outsourcingproject.domain.user.dto.response;
+package com.example.outsourcingproject.domain.auth.dto.response;
 
 import lombok.Getter;
 
