@@ -18,7 +18,7 @@ public enum ErrorCode {
     INVALID_PASSWORD("비밀번호가 맞지 않습니다.", HttpStatus.UNAUTHORIZED),
     USER_NOT_FOUND("유저를 찾을 수 없습니다.", HttpStatus.NOT_FOUND),
     SAME_AS_OLD_PASSWORD("현재 비밀번호와 동일합니다.", HttpStatus.BAD_REQUEST),
-    PASSWORD_CONFIRMATION_MISMATCH("새 비밀번호와 새 비밀번호 확인이 일치하지 않습니다.", HttpStatus.BAD_REQUEST),
+    PASSWORD_CONFIRMATION_MISMATCH("비밀번호와 비밀번호 확인이 일치하지 않습니다.", HttpStatus.BAD_REQUEST),
     INVALID_USER_ROLE("유효하지 않은 역할입니다.", HttpStatus.BAD_REQUEST),
 
     // 가게 관련 코드

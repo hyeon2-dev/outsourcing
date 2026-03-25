@@ -13,12 +13,20 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
+import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
 public class JwtFilter implements Filter {
 
     private final JwtUtil jwtUtil;
+
+    // 인증없이 허용할 경로
+    private static final List<String> WHITELIST = List.of(
+            "/auth/login",
+            "/auth/signup",
+            "/reissue"
+    );
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -32,7 +40,7 @@ public class JwtFilter implements Filter {
 
         String url = httpRequest.getRequestURI();
 
-        if (url.startsWith("/auth")) {
+        if (isWhiteList(url)) {
             chain.doFilter(request, response);
             return;
         }
@@ -90,5 +98,9 @@ public class JwtFilter implements Filter {
     @Override
     public void destroy() {
         Filter.super.destroy();
+    }
+
+    private boolean isWhiteList(String requestURI) {
+        return WHITELIST.stream().anyMatch(requestURI::startsWith);
     }
 }
