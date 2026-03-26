@@ -59,7 +59,7 @@ public class UserService {
         }
 
         // 현재 비밀번호와 새 비밀번호가 같은지 확인
-        if(!dto.getOldPassword().equals(dto.getNewPassword())) {
+        if(dto.getOldPassword().equals(dto.getNewPassword())) {
             throw new BaseException(ErrorCode.SAME_AS_OLD_PASSWORD, null);
         }
 
@@ -73,6 +73,7 @@ public class UserService {
 
     }
 
+    @Transactional
     public void deleteUser(AuthUser authUser) {
         User user = findUserByIdOrThrow(authUser.getUserId());
 
