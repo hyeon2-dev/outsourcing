@@ -20,6 +20,7 @@ public enum ErrorCode {
     SAME_AS_OLD_PASSWORD("현재 비밀번호와 동일합니다.", HttpStatus.BAD_REQUEST),
     PASSWORD_CONFIRMATION_MISMATCH("비밀번호와 비밀번호 확인이 일치하지 않습니다.", HttpStatus.BAD_REQUEST),
     INVALID_USER_ROLE("유효하지 않은 역할입니다.", HttpStatus.BAD_REQUEST),
+    USER_ALREADY_DELETE("이미 탈퇴한 사용자입니다", HttpStatus.BAD_REQUEST),
 
     // 가게 관련 코드
     POST_NOT_FOUND("id에 맞는 게시물이 없습니다.", HttpStatus.NOT_FOUND),
