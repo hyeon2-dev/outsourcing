@@ -1,6 +1,8 @@
 package com.example.outsourcingproject.domain.user.entity;
 
 import com.example.outsourcingproject.common.entity.BaseEntity;
+import com.example.outsourcingproject.common.exception.BaseException;
+import com.example.outsourcingproject.common.exception.ErrorCode;
 import com.example.outsourcingproject.domain.user.enums.UserRole;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
@@ -44,5 +46,32 @@ public class User extends BaseEntity {
         this.phone = phone;
         this.address = address;
         this.userRole = userRole;
+    }
+
+    // 본인 정보 수정
+    public void updateProfile(String name, String email, String phone, String address) {
+        if(name != null && !name.isBlank()) {
+            this.name = name;
+        }
+        if(email != null && !email.isBlank()) {
+            this.email = email;
+        }
+        if(phone != null && !phone.isBlank()) {
+            this.phone = phone;
+        }
+        if(address != null && !address.isBlank()) {
+            this.address = address;
+        }
+    }
+
+    public void changePassword(String encodedNewPassword) {
+        this.password = password;
+    }
+
+    public void delete() {
+        if (this.deleteFlag) {
+            throw new BaseException(ErrorCode.USER_ALREADY_DELETE, null);
+        }
+        this.deleteFlag = true;
     }
 }
