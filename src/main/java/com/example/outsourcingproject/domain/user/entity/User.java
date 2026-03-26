@@ -50,16 +50,16 @@ public class User extends BaseEntity {
 
     // 본인 정보 수정
     public void updateProfile(String name, String email, String phone, String address) {
-        if(name != null && !name.isBlank()) {
+        if(name != null) {
             this.name = name;
         }
-        if(email != null && !email.isBlank()) {
+        if(email != null) {
             this.email = email;
         }
-        if(phone != null && !phone.isBlank()) {
+        if(phone != null) {
             this.phone = phone;
         }
-        if(address != null && !address.isBlank()) {
+        if(address != null) {
             this.address = address;
         }
     }
