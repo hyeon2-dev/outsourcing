@@ -23,8 +23,12 @@ public enum ErrorCode {
     USER_ALREADY_DELETE("이미 탈퇴한 사용자입니다", HttpStatus.BAD_REQUEST),
 
     // 가게 관련 코드
-    POST_NOT_FOUND("id에 맞는 게시물이 없습니다.", HttpStatus.NOT_FOUND),
-    FORBIDDEN_POST("본인 게시물 아니어서 권한이 없습니다.", HttpStatus.FORBIDDEN),
+    INVALID_CATEGORY_TYPE("유효하지 않은 카테고리 이름입니다." , HttpStatus.BAD_REQUEST),
+    FORBIDDEN_STORE_CREATION("owner권한이 있는 사용자만 가게를 생성할 수 있습니다.", HttpStatus.FORBIDDEN),
+    STORE_LIMIT_EXCEEDED("owner는 최대 3개의 가게만 운영할 수 있습니다.", HttpStatus.FORBIDDEN),
+    STORE_NOT_FOUND("가게를 찾을 수 없습니다.", HttpStatus.NOT_FOUND),
+    FORBIDDEN_STORE("본인 가게가 아닙니다.", HttpStatus.FORBIDDEN),
+    STORE_ALREADY_DELETE("이미 페업한 가게입니다", HttpStatus.BAD_REQUEST),
 
     // 댓글 관련 코드
     COMMENT_NOT_FOUND("id에 맞는 댓글이 없습니다.", HttpStatus.NOT_FOUND),
