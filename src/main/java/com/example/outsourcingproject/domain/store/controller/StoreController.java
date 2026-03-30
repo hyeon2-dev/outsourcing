@@ -5,6 +5,7 @@ import com.example.outsourcingproject.common.dto.AuthUser;
 import com.example.outsourcingproject.domain.store.dto.request.CreateStoreRequestDto;
 import com.example.outsourcingproject.domain.store.dto.request.UpdateStoreRequestDto;
 import com.example.outsourcingproject.domain.store.dto.response.CreateStoreResponseDto;
+import com.example.outsourcingproject.domain.store.dto.response.StoreCustomerResponseDto;
 import com.example.outsourcingproject.domain.store.dto.response.StoreOwnerResponseDto;
 import com.example.outsourcingproject.domain.store.service.StoreService;
 import lombok.RequiredArgsConstructor;
@@ -68,9 +69,23 @@ public class StoreController {
     }
 
     // Customer----------------------------------------------------------------
-    // 가게 다건 조회
-    // 가게 단일 조회
     // 영업중인 가게 전체 조회
-    // 영업중인 가게 단일 조회
+    @GetMapping("/stores")
+    public ResponseEntity<Page<StoreCustomerResponseDto>> getStores(
+            @Auth AuthUser authUser,
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "10") int size
+    ) {
+        return ResponseEntity.ok(storeService.getStores(authUser, page, size));
+    }
+
+    // 가게 단일 조회
+    @GetMapping("/stores/{storeId}")
+    public ResponseEntity<StoreCustomerResponseDto> getStore (
+            @Auth AuthUser authUser,
+            @PathVariable Long storeId
+    ) {
+        return ResponseEntity.ok(storeService.getStore(authUser, storeId));
+    }
 
 }
