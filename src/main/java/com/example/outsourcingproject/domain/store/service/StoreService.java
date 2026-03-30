@@ -107,8 +107,6 @@ public class StoreService {
         return StoreCustomerResponseDto.toDto(store);
     }
 
-
-
     // userId로 사용자를 조회하고, 없으면 USER_NOT_FOUND 예외를 발생시킨다.
     private User findUserByIdOrThrow(Long userId) {
         return userRepository.findById(userId).orElseThrow(

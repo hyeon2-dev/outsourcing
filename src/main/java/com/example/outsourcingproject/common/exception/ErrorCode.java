@@ -30,6 +30,10 @@ public enum ErrorCode {
     FORBIDDEN_STORE("본인 가게가 아닙니다.", HttpStatus.FORBIDDEN),
     STORE_ALREADY_DELETE("이미 페업한 가게입니다", HttpStatus.BAD_REQUEST),
 
+    // 메뉴 관련 코드
+    MENU_NOT_FOUND("메뉴를 찾을 수 없습니다." , HttpStatus.NOT_FOUND),
+    MENU_ALREADY_DELETE("이미 삭제된 메뉴입니다.", HttpStatus.BAD_REQUEST),
+
     // 댓글 관련 코드
     COMMENT_NOT_FOUND("id에 맞는 댓글이 없습니다.", HttpStatus.NOT_FOUND),
     FORBIDDEN_COMMENT("본인 댓글이 아니어서 권한이 없습니다.", HttpStatus.FORBIDDEN);

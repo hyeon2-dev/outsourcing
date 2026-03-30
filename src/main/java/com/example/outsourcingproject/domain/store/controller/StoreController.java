@@ -21,7 +21,7 @@ public class StoreController {
 
     // Owner-------------------------------------------------------------------
     // 가게 생성
-    @PostMapping("/stores")
+    @PostMapping("/owner/stores")
     public ResponseEntity<CreateStoreResponseDto> createStore (
             @Auth AuthUser authUser,
             @RequestBody CreateStoreRequestDto dto
@@ -30,7 +30,7 @@ public class StoreController {
     }
 
     // 본인 가게 조회
-    @GetMapping("/stores/me")
+    @GetMapping("/owner/stores/me")
     public ResponseEntity<Page<StoreOwnerResponseDto>> getAllMyStores(
             @Auth AuthUser authUser,
             @RequestParam(defaultValue = "1") int page,
@@ -40,7 +40,7 @@ public class StoreController {
     }
 
     // 본인 가게 단일 조회
-    @GetMapping("/stores/{storeId}")
+    @GetMapping("/owner/stores/{storeId}")
     public ResponseEntity<StoreOwnerResponseDto> getMyStore(
             @Auth AuthUser authUser,
             @PathVariable Long storeId
@@ -49,7 +49,7 @@ public class StoreController {
     }
 
     // 본인 가게 정보 수정
-    @PutMapping("/stores/{storeId}")
+    @PutMapping("/owner/stores/{storeId}")
     public ResponseEntity<StoreOwnerResponseDto> updateMyStore(
             @Auth AuthUser authUser,
             @PathVariable Long storeId,
@@ -59,7 +59,7 @@ public class StoreController {
     }
 
     // 가게 폐업
-    @DeleteMapping("/stores/{storeId}/close")
+    @DeleteMapping("/owner/stores/{storeId}/close")
     public ResponseEntity<String> softDeleteMyStore (
             @Auth AuthUser authUser,
             @PathVariable Long storeId
