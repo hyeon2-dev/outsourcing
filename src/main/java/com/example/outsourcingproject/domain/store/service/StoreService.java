@@ -6,6 +6,7 @@ import com.example.outsourcingproject.common.exception.ErrorCode;
 import com.example.outsourcingproject.domain.store.dto.request.CreateStoreRequestDto;
 import com.example.outsourcingproject.domain.store.dto.request.UpdateStoreRequestDto;
 import com.example.outsourcingproject.domain.store.dto.response.CreateStoreResponseDto;
+import com.example.outsourcingproject.domain.store.dto.response.StoreCustomerResponseDto;
 import com.example.outsourcingproject.domain.store.dto.response.StoreOwnerResponseDto;
 import com.example.outsourcingproject.domain.store.entity.Store;
 import com.example.outsourcingproject.domain.store.repository.StoreRepository;
@@ -82,6 +83,29 @@ public class StoreService {
         store.closeStore();
     }
 
+    // Customer----------------------------------------------------------------
+    // 가게 다건 조회
+    @Transactional(readOnly = true)
+    public Page<StoreCustomerResponseDto> getStores(AuthUser authUser, int page, int size) {
+        findActiveUserByIdOrThrow(authUser.getUserId());
+
+        int adjustPage = (page > 0) ? page - 1 : 0;
+
+        Pageable pageable = PageRequest.of(adjustPage, size);
+
+        return storeRepository.findAllByClosedFalse(pageable)
+                .map(StoreCustomerResponseDto::toDto);
+    }
+
+    // 가게 단일 조회
+    @Transactional(readOnly = true)
+    public StoreCustomerResponseDto getStore(AuthUser authUser, Long storeId) {
+        User user = findActiveUserByIdOrThrow(authUser.getUserId());
+
+        Store store = findStoreByIdOrThrow(storeId);
+
+        return StoreCustomerResponseDto.toDto(store);
+    }
 
 
 
@@ -90,6 +114,18 @@ public class StoreService {
         return userRepository.findById(userId).orElseThrow(
                 () -> new BaseException(ErrorCode.USER_NOT_FOUND, null)
         );
+    }
+
+    // 활성화 유저 조회
+    private User findActiveUserByIdOrThrow(Long userId) {
+        User user = findUserByIdOrThrow(userId);
+
+        // 회원 탈퇴 유무
+        if (user.isDeleteFlag()) {
+            throw new BaseException(ErrorCode.USER_ALREADY_DELETE, null);
+        }
+
+        return user;
     }
 
     // owner 인지 확인하는 메서드
