@@ -34,6 +34,13 @@ public enum ErrorCode {
     MENU_NOT_FOUND("메뉴를 찾을 수 없습니다." , HttpStatus.NOT_FOUND),
     MENU_ALREADY_DELETE("이미 삭제된 메뉴입니다.", HttpStatus.BAD_REQUEST),
 
+    // 주문 관련 코드
+    MIN_ORDER_AMOUNT_NOT_MET("최소 주문 금액을 만족하지 않습니다", HttpStatus.BAD_REQUEST),
+    INVALID_MENU_STORE("해당 가게에 속한 메뉴가 아닙니다.", HttpStatus.BAD_REQUEST),
+    INVALID_ORDER_QUANTITY("주문 수량이 올바르지 않습니다", HttpStatus.BAD_REQUEST),
+    ORDER_NOT_FOUND("주문을 찾을 수 없습니다." , HttpStatus.NOT_FOUND),
+    DUPLICATE_MENU("중복 메뉴가 존재합니다." , HttpStatus.BAD_REQUEST),
+
     // 댓글 관련 코드
     COMMENT_NOT_FOUND("id에 맞는 댓글이 없습니다.", HttpStatus.NOT_FOUND),
     FORBIDDEN_COMMENT("본인 댓글이 아니어서 권한이 없습니다.", HttpStatus.FORBIDDEN);

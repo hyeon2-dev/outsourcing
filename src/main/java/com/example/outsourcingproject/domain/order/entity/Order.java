@@ -1,12 +1,16 @@
 package com.example.outsourcingproject.domain.order.entity;
 
 import com.example.outsourcingproject.common.entity.BaseEntity;
+import com.example.outsourcingproject.domain.menu.entity.Menu;
+import com.example.outsourcingproject.domain.order.dto.request.OrderMenuRequestDto;
 import com.example.outsourcingproject.domain.order.enums.OrderStatus;
 import com.example.outsourcingproject.domain.store.entity.Store;
 import com.example.outsourcingproject.domain.user.entity.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Getter
 @Entity
@@ -38,11 +42,12 @@ public class Order extends BaseEntity {
     @Column(length = 255)
     private String rejectReason;
 
-    public Order(User user, Store store, int totalPrice, String request, OrderStatus status) {
+    public Order(User user, Store store, int totalPrice, String request) {
         this.user = user;
         this.store = store;
         this.totalPrice = totalPrice;
         this.request = request;
         this.status = OrderStatus.PENDING;
     }
+
 }
